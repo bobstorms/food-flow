@@ -1,48 +1,48 @@
 <?php
 
     class User {
-        private $first_name;
-        private $last_name;
+        private $firstName;
+        private $lastName;
         private $email;
         private $password;
-        private $is_admin;
+        private $isAdmin;
 
         /**
-         * Get the value of first_name
+         * Get the value of firstName
          */ 
-        public function getFirst_name()
+        public function getFirstName()
         {
-                return $this->first_name;
+                return $this->firstName;
         }
 
         /**
-         * Set the value of first_name
+         * Set the value of firstName
          *
          * @return  self
          */ 
-        public function setFirst_name($first_name)
+        public function setFirstName($firstName)
         {
-                $this->first_name = $first_name;
+                $this->firstName = $firstName;
 
                 return $this;
         }
 
         /**
-         * Get the value of last_name
+         * Get the value of lastName
          */ 
-        public function getLast_name()
+        public function getLastName()
         {
-                return $this->last_name;
+                return $this->lastName;
         }
 
         /**
-         * Set the value of last_name
+         * Set the value of lastName
          *
          * @return  self
          */ 
-        public function setLast_name($last_name)
+        public function setLastName($lastName)
         {
-                $this->last_name = $last_name;
+                $this->lastName = $lastName;
 
                 return $this;
         }
@@ -88,21 +88,21 @@
         }
 
         /**
-         * Get the value of is_admin
+         * Get the value of isAdmin
          */ 
-        public function getIs_admin()
+        public function getIsAdmin()
         {
-                return $this->is_admin;
+                return $this->isAdmin;
         }
 
         /**
-         * Set the value of is_admin
+         * Set the value of isAdmin
          *
          * @return  self
          */ 
-        public function setIs_admin($is_admin)
+        public function setIsAdmin($isAdmin)
         {
-                $this->is_admin = $is_admin;
+                $this->isAdmin = $isAdmin;
 
                 return $this;
         }
