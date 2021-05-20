@@ -1,4 +1,5 @@
 <?php
+    include_once("./classes/User.php");
 
     if(!empty($_POST)) {
         $firstname = $_POST['firstname'];
@@ -38,6 +39,14 @@
         if($password !== $password_confirm && !$error_found) {
             $error_found = true;
             $error = "De wachtwoorden zijn niet gelijk.";
+        } else {
+            $user = new User();
+            $user->setFirstName($firstname);
+            $user->setLastName($lastname);
+            $user->setEmail($email);
+            $user->setPassword($password);
+            $user->setIsAdmin(0);
+            $user->save();
         }
 
     }
