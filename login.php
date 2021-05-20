@@ -1,4 +1,30 @@
-<!DOCTYPE html>
+<?php
+    include_once("./classes/User.php");
+
+    if(!empty($_POST)) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $error_found = false;
+
+        if(empty($email) && !$error_found) {
+            $error_found = true;
+            $error = "Gelieve een e-mailadres in te vullen.";
+        }
+
+        if(empty($password) && !$error_found) {
+            $error_found = true;
+            $error = "Gelieve een wachtwoord in te vullen.";
+        } else {
+            $user = new User();
+            $user->setEmail($email);
+            $user->setPassword($password);
+            $user->login();
+        }
+
+    }
+
+?><!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">

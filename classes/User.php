@@ -9,16 +9,24 @@
 
         public function save() {
             include_once("./database/Db.php");
+            include_once("./functions/Password.php");
             $conn = Db::getInstance();
 
             $q = $conn->prepare("INSERT INTO user (first_name, last_name, email, password, is_admin) VALUES (:first_name, :last_name, :email, :password, :is_admin)");
             $q->bindValue(':first_name', $this->firstName);
             $q->bindValue(':last_name', $this->lastName);
             $q->bindValue(':email', $this->email);
-            $q->bindValue(':password', $this->password);
+            $q->bindValue(':password', Password::hash($this->password));
             $q->bindValue(':is_admin', $this->isAdmin);
-            
+
             return $q->execute();
+        }
+
+        public function login() {
+            include_once("./database/Db.php");
+            include_once("./functions/Password.php");
+            $conn = Db::getInstance();
+
         }
 
         public function getFirstName() {

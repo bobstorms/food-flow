@@ -47,6 +47,7 @@
             $user->setPassword($password);
             $user->setIsAdmin(0);
             $user->save();
+            header("Location: login.php");
         }
 
     }
