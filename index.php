@@ -1,5 +1,11 @@
 <?php
 
+    session_start();
+    if(!$_SESSION["user"]) {
+        header("Location: login.php");
+        die();
+    }
+
     include_once("./database/Db.php");
     $conn = Db::getInstance();
     
@@ -23,6 +29,6 @@
     <p><strong>Welcome to my website!</strong></p>
     <p>First name: <?php echo $res["first_name"]; ?></p>
     <p>Last name: <?php echo $res["last_name"]; ?></p>
-    <p>Email: <?php echo $res["email"]; ?></p>
+    <p>Email: <?php echo $_SESSION["user"]; ?></p>
 </body>
 </html>

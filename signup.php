@@ -1,4 +1,5 @@
 <?php
+    include_once("./functions/checkLogin.php");
     include_once("./classes/User.php");
 
     if(!empty($_POST)) {
