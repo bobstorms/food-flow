@@ -12,16 +12,15 @@ header, main, footer {
     padding: $padding-medium;
 }
 
+h1, h2, h3, h4, h5, p, label {
+    color: $color-text;
+}
+
+p {
+    font-size: $font-size-text;
+    line-height: 1.875em;
+}
+
 h1 {
     font-size: $font-size-h1;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: .5em;
-}
-
-.login-form input {
-    width: 100%;
 }

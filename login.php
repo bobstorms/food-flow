@@ -44,14 +44,18 @@
                 <div class="error"><?php echo $error; ?></div>
             <?php endif; ?>
 
-            <label for="email">E-mail</label>
-            <input type="email" name="email" id="email">
+            <div class="form__input-fields">
+                <label for="email" class="form__label">E-mail</label>
+                <input type="email" name="email" id="email" class="form__input">
 
-            <label for="password">Wachtwoord</label>
-            <input type="password" name="password" id="password">
+                <label for="password" class="form__label">Wachtwoord</label>
+                <input type="password" name="password" id="password" class="form__input">
+            </div>
 
-            <input type="submit" value="Inloggen">
-            <a href="signup.php">Ik heb nog geen account</a>
+            <div class="form__button-set">
+                <input type="submit" value="Inloggen" class="button button--primary">
+                <a href="signup.php" class="button button--secondary">Ik heb nog geen account</a>
+            </div>
         </form>
     </main>
 

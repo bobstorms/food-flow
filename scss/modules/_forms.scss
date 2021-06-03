@@ -1,0 +1,38 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.form__input-fields {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.form__button-set {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form__label {
+    font-weight: $font-weight-medium;
+}
+
+.form__input {
+    height: 50px;
+    border: none;
+    border-radius: .75em;
+    background-color: $color-light-grey;
+    padding: $padding-small;
+    padding-top: 13px;
+
+    font-size: $font-size-text;
+}
+
+.login-form input {
+    width: 100%;
+}

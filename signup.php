@@ -42,25 +42,33 @@
 
         <form action="" method="POST" class="form login-form">
             <h1>Registreren</h1>
+            <p>
+                Je account moet eerst goedgekeurd worden door een medewerker voor je 
+                toegang krijgt tot de applicatie.
+            </p>
 
             <?php if(isset($error)): ?>
                 <div class="error"><?php echo $error; ?></div>
             <?php endif; ?>
 
-            <label for="firstname">Voornaam</label>
-            <input type="text" name="firstname" id="firstname">
+            <div class="form__input-fields">
+                <label for="firstname" class="form__label">Voornaam</label>
+                <input type="text" name="firstname" id="firstname" class="form__input">
 
-            <label for="lastname">Achternaam</label>
-            <input type="text" name="lastname" id="firstname">
+                <label for="lastname" class="form__label">Achternaam</label>
+                <input type="text" name="lastname" id="lastname" class="form__input">
 
-            <label for="email">E-mail</label>
-            <input type="email" name="email" id="email">
+                <label for="email" class="form__label">E-mail</label>
+                <input type="email" name="email" id="email" class="form__input">
 
-            <label for="password">Wachtwoord</label>
-            <input type="password" name="password" id="password">
+                <label for="password" class="form__label">Wachtwoord</label>
+                <input type="password" name="password" id="password" class="form__input">
+            </div>
 
-            <input type="submit" value="Registreren" class="button button--primary">
-            <a href="login.php" class="button button--secondary">Ik heb al een account</a>
+            <div class="form__button-set">
+                <input type="submit" value="Registreren" class="button button--primary">
+                <a href="login.php" class="button button--secondary">Ik heb al een account</a>
+            </div>
         </form>
     </main>
 
