@@ -63,7 +63,9 @@
             $result = $q->fetch();
             $approved = $result["is_approved"];
 
-            if(!$approved) {
+            if(empty($result)) {
+                throw new Exception("Dit account bestaat niet.");
+            } else if(!$approved) {
                 throw new Exception("Je account is nog niet goedgekeurd.");
             }
 
