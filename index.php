@@ -24,10 +24,12 @@
     <title>Foodflow | Home</title>
 </head>
 <body>
-    <h1>Home</h1>
-    <p><strong>Welcome to my website!</strong></p>
-    <p>First name: <?php echo $res["first_name"]; ?></p>
-    <p>Last name: <?php echo $res["last_name"]; ?></p>
-    <p>Email: <?php echo $_SESSION["user"]; ?></p>
+    <main>
+        <h1>Home</h1>
+        <p><strong>Welcome to my website!</strong></p>
+        <p>First name: <?php echo $res["first_name"]; ?></p>
+        <p>Last name: <?php echo $res["last_name"]; ?></p>
+        <p>Email: <?php echo $_SESSION["user"]; ?></p>
+    </main>
 </body>
 </html>
