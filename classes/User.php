@@ -32,16 +32,35 @@
             $q->bindValue(':first_name', $this->firstName);
             $q->bindValue(':last_name', $this->lastName);
             $q->bindValue(':email', $this->email);
-            $q->bindValue(':password', Password::hash($this->password));
+            $hash = Password::hash($this->password);
+            var_dump($this->password);
+            var_dump($hash);
+            $q->bindValue(':password', $hash);
             $q->bindValue(':is_admin', $this->isAdmin);
 
             return $q->execute();
         }
 
-        public function login() {
+        public function login($email, $password) {
+            $this->email = $email;
+            $this->password = $password;
+
             include_once("./database/Db.php");
             include_once("./functions/Password.php");
             $conn = Db::getInstance();
+
+            $q = $conn->prepare("SELECT * FROM user WHERE email = :email");
+            $q->bindValue(':email', $this->email);
+            $q->execute();
+
+            $hash = $q->fetch()["password"];
+
+            if(Password::verify($this->password, $hash)) {
+                session_start();
+                $_SESSION["user"] = $this->email;
+            } else {
+                throw new Exception("Het e-mailadres en/of wachtwoord is niet correct.");
+            }
 
         }
 
@@ -96,8 +115,7 @@
             if(empty($password)) {
                 throw new Exception("Gelieve een wachtwoord in te vullen.");
             } else {
-                include_once("./functions/Password.php");
-                $this->password = Password::hash($password);
+                $this->password = $password;
                 return $this;
             }
         }

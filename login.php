@@ -7,9 +7,8 @@
 
         try {
             $user = new User();
-            $user->setEmail($email);
-            $user->setPassword($password);
-            $user->login();
+            $user->login($email, $password);
+            header("Location: index.php");
         } catch(Exception $e) {
             $error = $e->getMessage();
         }
