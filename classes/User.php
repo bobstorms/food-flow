@@ -42,6 +42,13 @@
         }
 
         public function login($email, $password) {
+
+            if(empty($email)) {
+                throw new Exception("Gelieve een e-mailadres in te vullen.");
+            } else if(empty($password)) {
+                throw new Exception("Gelieve een wachtwoord in te vullen.");
+            }
+
             $this->email = $email;
             $this->password = $password;
 
@@ -53,7 +60,14 @@
             $q->bindValue(':email', $this->email);
             $q->execute();
 
-            $hash = $q->fetch()["password"];
+            $result = $q->fetch();
+            $approved = $result["is_approved"];
+
+            if(!$approved) {
+                throw new Exception("Je account is nog niet goedgekeurd.");
+            }
+
+            $hash = $result["password"];
 
             if(Password::verify($this->password, $hash)) {
                 session_start();
