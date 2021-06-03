@@ -1,6 +1,10 @@
 <?php
     include_once("./classes/User.php");
 
+    if($_GET["signup"] === "success") {
+        $success = "Je account is succesvol geregistreerd! Je kan nu inloggen.";
+    }
+
     if(!empty($_POST)) {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -34,6 +38,10 @@
 
         <form action="" method="POST" class="form login-form">
             <h1>Inloggen</h1>
+
+            <?php if(isset($success)): ?>
+                <div class="success"><?php echo $success; ?></div>
+            <?php endif; ?>
 
             <?php if(isset($error)): ?>
                 <div class="error"><?php echo $error; ?></div>
