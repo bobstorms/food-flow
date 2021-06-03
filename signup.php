@@ -58,7 +58,7 @@
             <input type="password" name="password" id="password">
 
             <input type="submit" value="Registreren">
-            <a href="login.php">Al een account?</a>
+            <a href="login.php">Ik heb al een account</a>
         </form>
     </main>
 

@@ -26,7 +26,7 @@
             include_once("./database/Db.php");
             include_once("./functions/Password.php");
             $conn = Db::getInstance();
-
+            
         }
 
         public function getFirstName() {
