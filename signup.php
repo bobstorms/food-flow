@@ -59,8 +59,8 @@
             <label for="password">Wachtwoord</label>
             <input type="password" name="password" id="password">
 
-            <input type="submit" value="Registreren">
-            <a href="login.php">Ik heb al een account</a>
+            <input type="submit" value="Registreren" class="button button--primary">
+            <a href="login.php" class="button button--secondary">Ik heb al een account</a>
         </form>
     </main>
 

@@ -1,0 +1,28 @@
+.button {
+    text-decoration: none;
+    border: none;
+
+    height: 50px;
+    padding-bottom: .2em;
+    border-radius: 50px;
+    font-size: $font-size-button;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: $color-button-primary;
+    color: $color-white;
+}
+
+.button--primary {
+    background-color: $color-button-primary;
+    color: $color-white;
+}
+
+.button--secondary {
+    background-color: $color-button-secondary;
+    color: $color-green;
+}
