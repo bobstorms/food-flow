@@ -14,8 +14,6 @@
     $res = $q->fetch();
 
 ?><!DOCTYPE html>
-<html lang="en">
-<!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">

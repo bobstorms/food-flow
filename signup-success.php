@@ -3,7 +3,7 @@
     include_once("./functions/checkLogin.php");
 
 ?><!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
