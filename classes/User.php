@@ -34,8 +34,12 @@
         }
 
         public function setFirstName($firstName) {
-            $this->firstName = $firstName;
-            return $this;
+            if(empty($firstName)) {
+                throw new Exception("Gelieve een voornaam in te vullen.");
+            } else {
+                $this->firstName = $firstName;
+                return $this;
+            }
         }
 
         public function getLastName() {
@@ -43,8 +47,12 @@
         }
 
         public function setLastName($lastName) {
-            $this->lastName = $lastName;
-            return $this;
+            if(empty($lastName)) {
+                throw new Exception("Gelieve een achternaam in te vullen.");
+            } else {
+                $this->lastName = $lastName;
+                return $this;
+            }
         }
 
         public function getEmail() {
@@ -52,8 +60,14 @@
         }
 
         public function setEmail($email) {
-            $this->email = $email;
-            return $this;
+            if(empty($email)) {
+                throw new Exception("Gelieve een e-mailadres in te vullen.");
+            } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception("Gelieve een geldig e-mailadres in te vullen.");
+            } else {
+                $this->email = $email;
+                return $this;
+            }
         }
 
         public function getPassword() {
@@ -61,9 +75,13 @@
         }
 
         public function setPassword($password) {
-            include_once("./functions/Password.php");
-            $this->password = Password::hash($password);
-            return $this;
+            if(empty($password)) {
+                throw new Exception("Gelieve een wachtwoord in te vullen.");
+            } else {
+                include_once("./functions/Password.php");
+                $this->password = Password::hash($password);
+                return $this;
+            }
         }
 
         public function getIsAdmin() {

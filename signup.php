@@ -6,40 +6,8 @@
         $lastname = $_POST['lastname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $password_confirm = $_POST['password_confirm'];
 
-        $error_found = false;
-
-        if(empty($firstname) && !$error_found) {
-            $error_found = true;
-            $error = "Gelieve een voornaam in te vullen.";
-        }
-
-        if(empty($lastname) && !$error_found) {
-            $error_found = true;
-            $error = "Gelieve een achternaam in te vullen.";
-        }
-
-        if(empty($email) && !$error_found) {
-            $error_found = true;
-            $error = "Gelieve een e-mailadres in te vullen.";
-        }
-
-        if(empty($password) && !$error_found) {
-            $error_found = true;
-            $error = "Gelieve een wachtwoord in te vullen.";
-        }
-
-        if(empty($password_confirm) && !$error_found) {
-            $error_found = true;
-            $error = "Gelieve je wachtwoord te bevestigen.";
-        }
-
-        // Check if passwords match
-        if($password !== $password_confirm && !$error_found) {
-            $error_found = true;
-            $error = "De wachtwoorden zijn niet gelijk.";
-        } else {
+        try {
             $user = new User();
             $user->setFirstName($firstname);
             $user->setLastName($lastname);
@@ -48,6 +16,8 @@
             $user->setIsAdmin(0);
             $user->save();
             header("Location: login.php");
+        } catch(Exception $e) {
+            $error = $e->getMessage();
         }
 
     }
@@ -87,12 +57,8 @@
             <label for="password">Wachtwoord</label>
             <input type="password" name="password" id="password">
 
-            <label for="password_confirm">Bevestig wachtwoord</label>
-            <input type="password" name="password_confirm" id="password_confirm">
-
-            <a href="login.php">Al een account?</a>
-
             <input type="submit" value="Registreren">
+            <a href="login.php">Al een account?</a>
         </form>
     </main>
 
