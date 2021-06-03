@@ -15,7 +15,7 @@
             $user->setPassword($password);
             $user->setIsAdmin(0);
             $user->save();
-            header("Location: login.php?signup=success");
+            header("Location: signup-success.php");
         } catch(Exception $e) {
             $error = $e->getMessage();
         }

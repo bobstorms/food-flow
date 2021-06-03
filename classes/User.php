@@ -7,6 +7,22 @@
         private $password;
         private $isAdmin;
 
+        private function checkIfEmailExists($email) {
+            include_once("./database/Db.php");
+            $conn = Db::getInstance();
+
+            $q = $conn->prepare("SELECT * FROM user WHERE email = :email");
+            $q->bindValue(':email', $email);
+            $q->execute();
+            $result = $q->fetch();
+            
+            if($result[0]) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function save() {
             include_once("./database/Db.php");
             include_once("./functions/Password.php");
@@ -26,7 +42,7 @@
             include_once("./database/Db.php");
             include_once("./functions/Password.php");
             $conn = Db::getInstance();
-            
+
         }
 
         public function getFirstName() {
@@ -64,6 +80,8 @@
                 throw new Exception("Gelieve een e-mailadres in te vullen.");
             } else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 throw new Exception("Gelieve een geldig e-mailadres in te vullen.");
+            } else if($this->checkIfEmailExists($email)) {
+                throw new Exception("Dit e-mailadres is reeds in gebruik.");
             } else {
                 $this->email = $email;
                 return $this;
