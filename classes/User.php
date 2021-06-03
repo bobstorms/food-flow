@@ -5,6 +5,7 @@
         private $lastName;
         private $email;
         private $password;
+        private $isApproved;
         private $isAdmin;
 
         private function checkIfEmailExists($email) {
@@ -28,14 +29,13 @@
             include_once("./functions/Password.php");
             $conn = Db::getInstance();
 
-            $q = $conn->prepare("INSERT INTO user (first_name, last_name, email, password, is_admin) VALUES (:first_name, :last_name, :email, :password, :is_admin)");
+            $q = $conn->prepare("INSERT INTO user (first_name, last_name, email, password, is_approved, is_admin) VALUES (:first_name, :last_name, :email, :password, :is_approved, :is_admin)");
             $q->bindValue(':first_name', $this->firstName);
             $q->bindValue(':last_name', $this->lastName);
             $q->bindValue(':email', $this->email);
             $hash = Password::hash($this->password);
-            var_dump($this->password);
-            var_dump($hash);
             $q->bindValue(':password', $hash);
+            $q->bindValue(':is_approved', $this->isApproved);
             $q->bindValue(':is_admin', $this->isAdmin);
 
             return $q->execute();
@@ -142,6 +142,15 @@
 
         public function setIsAdmin($isAdmin) {
             $this->isAdmin = $isAdmin;
+            return $this;
+        }
+
+        public function getIsApproved() {
+            return $this->isApproved;
+        }
+
+        public function setIsApproved($isApproved) {
+            $this->isApproved = $isApproved;
             return $this;
         }
     }

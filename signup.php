@@ -14,6 +14,7 @@
             $user->setLastName($lastname);
             $user->setEmail($email);
             $user->setPassword($password);
+            $user->setIsApproved(0);
             $user->setIsAdmin(0);
             $user->save();
             header("Location: signup-success.php");
