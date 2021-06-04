@@ -35,11 +35,11 @@
 </head>
 <body>
 
+    <header class="header">
+        <img src="./images/logo-word.svg" alt="Foodflow" class="header__logo"/>
+    </header>
+
     <main>
-        <div class="header-logo">
-
-        </div>
-
         <form action="" method="POST" class="form login-form">
             <h1>Registreren</h1>
             <p>

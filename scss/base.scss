@@ -9,6 +9,9 @@ header, main, footer {
     max-width: $max-screen-width;
     margin-left: auto;
     margin-right: auto;
+}
+
+main {
     padding: $padding-medium;
 }
 

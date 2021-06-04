@@ -1,0 +1,20 @@
+.header {
+    height: 100px;
+    padding-left: $padding-medium;
+    padding-right: $padding-medium;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin-bottom: -$padding-medium;
+}
+
+.header__logo {
+    height: 20px;
+}
+
+.header__logout-icon {
+    margin-left: auto;
+    height: 25px;
+}

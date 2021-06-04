@@ -24,6 +24,12 @@
     <title>Foodflow | Home</title>
 </head>
 <body>
+    <header class="header">
+        <img src="./images/logo-word.svg" alt="Foodflow" class="header__logo"/>
+        <a href="logout.php" class="header__logout-icon">
+            <img src="./images/logout.svg" alt="Log uit">
+        </a>
+    </header>
     <main>
         <h1>Home</h1>
         <p><strong>Welcome to my website!</strong></p>
