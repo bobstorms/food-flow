@@ -1,0 +1,43 @@
+.menu {
+    display: flex;
+    gap: 15px;
+}
+
+.menu__item {
+    color: $color-white;
+    background-color: $color-light-green;
+    color: $color-green;
+
+    text-decoration: none;
+    font-weight: $font-weight-medium;
+    font-size: 1em;
+
+    border-radius: 10px;
+
+    height: 50px;
+    width: 100%;
+    padding-bottom: .2em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu__item img {
+    margin-top: .1em;
+    margin-right: 6px;
+    display: none;
+}
+
+.menu__item--active {
+    background-color: $color-green;
+    color: $color-white;
+}
+
+@media screen and (min-width: 370px) {
+
+    .menu__item img {
+        display: inline;
+    }
+
+}

@@ -32,16 +32,16 @@
     </header>
     <main>
         <div class="menu">
-            <a href="index.php" class="menu__item menu__item--active">
-                <img src="./images/orders-white.svg">
+            <a href="index.php" class="menu__item">
+                <img src="./images/orders-green.svg">
                 <span>Bestellingen</span>
             </a>
-            <a href="rides.php" class="menu__item">
-                <img src="./images/car-green.svg" alt="">
+            <a href="rides.php" class="menu__item menu__item--active">
+                <img src="./images/car-white.svg" alt="">
                 <span>Ritten</span>
             </a>
         </div>
-        <h2>Kies een organisatie</h2>
+        <h2>Rittenplanning</h2>
         <p><strong>Welcome to my website!</strong></p>
         <p>Email: <?php echo $_SESSION["user"]; ?></p>
     </main>
