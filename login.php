@@ -33,8 +33,8 @@
 <body>
 
     <main>
-        <div class="header-logo">
-
+        <div class="login-logo">
+            <img src="./images/logo-full.png" alt="Foodflow">
         </div>
 
         <form action="" method="POST" class="form login-form">
