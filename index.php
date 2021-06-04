@@ -41,9 +41,28 @@
                 <span>Ritten</span>
             </a>
         </div>
+
         <h2>Kies een organisatie</h2>
-        <p><strong>Welcome to my website!</strong></p>
-        <p>Email: <?php echo $_SESSION["user"]; ?></p>
+
+        <div class="client-list">
+
+            <div class="client-list__item">
+                <a href="sorting?id=1">
+                    <span>Actief Chaldeeuwse Organisatie</span>
+                    <img src="./images/arrow-forward.svg" alt="Open">
+                </a>
+            </div>
+            <hr>
+            <div class="client-list__item">
+                <a href="sorting?id=1">
+                    <span>Actief Chaldeeuwse Organisatie</span>
+                    <img src="./images/arrow-forward.svg" alt="Open">
+                </a>
+            </div>
+            <hr>
+
+        </div>
+
     </main>
 </body>
 </html>

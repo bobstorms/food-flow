@@ -1,0 +1,24 @@
+.client-list__item a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    text-decoration: none;
+    color: $color-text;
+    height: 60px;
+}
+
+.client-list__item a span {
+    font-size: 1em;
+}
+
+.client-list__item a img {
+    margin-left: auto;
+    height: 15px;
+}
+
+.client-list hr {
+    border: none;
+    border-bottom: 1px solid $color-grey;
+}
