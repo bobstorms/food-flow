@@ -1,0 +1,42 @@
+.alert {
+    background-color: $color-light-grey;
+    color: $color-dark-grey;
+    padding: 1.25em;
+    padding-top: 1.1em;
+    border-radius: 5px;
+    margin-top: 15px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.alert::before {
+    content: "";
+    background-image: url("../images/exclamation-grey.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    margin-right: 8px;
+    margin-top: 1px;
+}
+
+.alert--success {
+    background-color: $color-light-green;
+    color: $color-green;
+}
+
+.alert--success::before {
+    background-image: url("../images/exclamation-green.svg");
+}
+
+.alert--error {
+    background-color: $color-light-blue;
+    color: $color-blue;
+}
+
+.alert--error::before {
+    background-image: url("../images/exclamation-blue.svg");
+}

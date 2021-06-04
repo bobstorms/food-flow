@@ -41,7 +41,7 @@
             <h1>Inloggen</h1>
 
             <?php if(isset($error)): ?>
-                <div class="error"><?php echo $error; ?></div>
+                <div class="alert alert--error"><?php echo $error; ?></div>
             <?php endif; ?>
 
             <div class="form__input-fields">
