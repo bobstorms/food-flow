@@ -6,13 +6,6 @@
         die();
     }
 
-    include_once("./database/Db.php");
-    $conn = Db::getInstance();
-    
-    $q = $conn->prepare("SELECT * FROM user");
-    $q->execute();
-    $res = $q->fetch();
-
 ?><!DOCTYPE html>
 <html lang="nl">
 <head>

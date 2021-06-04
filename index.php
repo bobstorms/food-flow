@@ -6,12 +6,8 @@
         die();
     }
 
-    include_once("./database/Db.php");
-    $conn = Db::getInstance();
-    
-    $q = $conn->prepare("SELECT * FROM user");
-    $q->execute();
-    $res = $q->fetch();
+    include_once("./classes/Client.php");
+    $clients = Client::getAllClients();
 
 ?><!DOCTYPE html>
 <html lang="nl">
@@ -46,20 +42,14 @@
 
         <div class="client-list">
 
-            <div class="client-list__item">
-                <a href="sorting?id=1">
-                    <span>Actief Chaldeeuwse Organisatie</span>
-                    <img src="./images/arrow-forward.svg" alt="Open">
-                </a>
-            </div>
-            <hr>
-            <div class="client-list__item">
-                <a href="sorting?id=1">
-                    <span>Actief Chaldeeuwse Organisatie</span>
-                    <img src="./images/arrow-forward.svg" alt="Open">
-                </a>
-            </div>
-            <hr>
+            <?php foreach($clients as $client): ?>
+                <div class="client-list__item">
+                    <a href="sorting-card.php?id=<?php echo $client["id"]; ?>">
+                        <span><?php echo $client["name"]; ?></span>
+                        <img src="./images/arrow-forward.svg" alt="Open">
+                    </a>
+                </div>
+            <?php endforeach; ?>
 
         </div>
 

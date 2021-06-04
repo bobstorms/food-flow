@@ -1,3 +1,7 @@
+.client-list {
+    margin-top: 10px;
+}
+
 .client-list__item a {
     display: flex;
     flex-direction: row;
@@ -7,6 +11,8 @@
     text-decoration: none;
     color: $color-text;
     height: 60px;
+
+    border-bottom: 1px solid $color-grey;
 }
 
 .client-list__item a span {
@@ -16,9 +22,4 @@
 .client-list__item a img {
     margin-left: auto;
     height: 15px;
-}
-
-.client-list hr {
-    border: none;
-    border-bottom: 1px solid $color-grey;
 }
