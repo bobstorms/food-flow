@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Ace SQL dump
-# Version 3028
+# Version 3030
 #
 # https://sequel-ace.com/
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
 # Host: localhost (MySQL 5.7.32)
 # Database: foodflow
-# Generation Time: 2021-05-09 00:15:28 +0000
+# Generation Time: 2021-06-05 16:05:13 +0000
 # ************************************************************
 
 
@@ -35,8 +35,31 @@ CREATE TABLE `client` (
   `phone` varchar(15) NOT NULL DEFAULT '',
   `email` varchar(300) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `client` WRITE;
+/*!40000 ALTER TABLE `client` DISABLE KEYS */;
+
+INSERT INTO `client` (`id`, `name`, `address_street`, `address_number`, `city`, `postal_code`, `phone`, `email`)
+VALUES
+	(1,'AMAI','Grote Markt','21','Mechelen','2800','',''),
+	(2,'Asiel en Migratie','Sint Romboutskerkhof','1','Mechelen','2800','',''),
+	(3,'Sociaal Centrum','Twaalf Apostelenstraat','17','Mechelen','2800','',''),
+	(4,'OCMW Bornem','Stationsstraat','22','Mechelen','2800','',''),
+	(5,'OCMW Putte','Mechelbaan','547','Putte','2580','',''),
+	(6,'De Keeting','Kroonstraat','64','Mechelen','2800','',''),
+	(7,'De Refuge','Onze-Lieve-Vrouwestraat','52','Mechelen','2800','',''),
+	(8,'CAW Stassart 2','Stassartstraat','2','Mechelen','2800','',''),
+	(9,'Emmaus Juneco','Korte Schipstraat','16','Mechelen','2800','',''),
+	(10,'Emmaus De Hefboom','Steenweg op Heindonck','103','Heffen','2801','',''),
+	(11,'De Nieuwe Weg','Lange Schipstraat','25','Mechelen','2800','',''),
+	(12,'Sint Vincentius Noord','Liersesteenweg','40','Mechelen','2800','',''),
+	(13,'Sint Vincentius Zuid','Antoon Spinoystraat','8','Mechelen','2800','',''),
+	(14,'Bohets Mechelen','Krommestraat','7','Mechelen','2800','',''),
+	(15,'JAM Otterbeek','Tivolilaan','45','Mechelen','2800','','');
+
+/*!40000 ALTER TABLE `client` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table event
@@ -55,56 +78,6 @@ CREATE TABLE `event` (
 
 
 
-# Dump of table product
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `product`;
-
-CREATE TABLE `product` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(300) NOT NULL DEFAULT '',
-  `image` varchar(300) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-
-# Dump of table user
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `user`;
-
-CREATE TABLE `user` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(300) NOT NULL DEFAULT '',
-  `last_name` varchar(300) NOT NULL DEFAULT '',
-  `email` varchar(300) NOT NULL DEFAULT '',
-  `password` varchar(100) NOT NULL DEFAULT '',
-  `is_admin` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-
-# Dump of table client_product
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `client_product`;
-
-CREATE TABLE `client_product` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `client_id` int(11) unsigned NOT NULL,
-  `product_id` int(11) unsigned NOT NULL,
-  `quantity` int(2) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `client_id` (`client_id`),
-  KEY `product_id` (`product_id`),
-  CONSTRAINT `client_product_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
-  CONSTRAINT `client_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-
 # Dump of table order_ticket
 # ------------------------------------------------------------
 
@@ -119,9 +92,41 @@ CREATE TABLE `order_ticket` (
   KEY `user_id` (`user_id`),
   KEY `client_product_id` (`client_product_id`),
   CONSTRAINT `order_ticket_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `order_ticket_ibfk_2` FOREIGN KEY (`client_product_id`) REFERENCES `client_product` (`id`)
+  CONSTRAINT `order_ticket_ibfk_2` FOREIGN KEY (`client_product_id`) REFERENCES `wishlist` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+
+# Dump of table product
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `product`;
+
+CREATE TABLE `product` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(300) NOT NULL DEFAULT '',
+  `image` varchar(300) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+
+INSERT INTO `product` (`id`, `name`, `image`)
+VALUES
+	(1,'Groenten','./images/products/product-groenten.png'),
+	(2,'Fruit','./images/products/product-fruit.png'),
+	(3,'Zuivel','./images/products/product-zuivel.png'),
+	(4,'Snoepgoed','./images/products/product-snoepgoed.png'),
+	(5,'Droge voeding','./images/products/product-droge-voeding.png'),
+	(6,'Brood','./images/products/product-brood.png'),
+	(7,'Diepvries','./images/products/product-diepvries.png'),
+	(8,'Vlees','./images/products/product-vlees.png'),
+	(9,'Vis','./images/products/product-vis.png'),
+	(10,'Conserven','./images/products/product-conserven.png');
+
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table ride
@@ -158,6 +163,34 @@ CREATE TABLE `stop` (
 
 
 
+# Dump of table user
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(300) NOT NULL DEFAULT '',
+  `last_name` varchar(300) NOT NULL DEFAULT '',
+  `email` varchar(300) NOT NULL DEFAULT '',
+  `password` varchar(100) NOT NULL DEFAULT '',
+  `is_approved` tinyint(1) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `is_approved`, `is_admin`)
+VALUES
+	(1,'Bob','Storms','bob.storms@hotmail.be','$2y$12$GcD6obcoGlpCAwdwpkQFMeF4laWHk3wHH7UxHC1w5DzEsUDOQxwE.',1,1),
+	(3,'Testgebruiker','Foodflow','testgebruiker.foodflow@bobstorms.be','$2y$12$h6b9qvFyOoZc3ow0GAmbmuAFDnsxkifFunK1r0QrAfB4veTIcjh.i',1,0);
+
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table weight
 # ------------------------------------------------------------
 
@@ -172,6 +205,50 @@ CREATE TABLE `weight` (
   CONSTRAINT `weight_ibfk_1` FOREIGN KEY (`order_ticket_id`) REFERENCES `order_ticket` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+
+# Dump of table wishlist
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `wishlist`;
+
+CREATE TABLE `wishlist` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `client_id` int(11) unsigned NOT NULL,
+  `product_id` int(11) unsigned NOT NULL,
+  `quantity` int(2) NOT NULL,
+  `is_ready` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client_id` (`client_id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
+  CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+
+LOCK TABLES `wishlist` WRITE;
+/*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
+
+INSERT INTO `wishlist` (`id`, `client_id`, `product_id`, `quantity`, `is_ready`)
+VALUES
+	(1,1,1,7,0),
+	(2,1,2,7,0),
+	(3,1,4,2,0),
+	(4,1,3,2,0),
+	(5,1,5,2,0),
+	(6,2,1,25,0),
+	(7,2,1,5,0),
+	(8,2,5,3,0),
+	(9,2,6,3,0),
+	(10,2,4,2,0),
+	(11,2,7,6,0),
+	(12,3,1,20,0),
+	(13,3,2,4,0),
+	(14,3,3,1,0),
+	(15,3,5,1,0),
+	(16,3,4,1,0);
+
+/*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 
