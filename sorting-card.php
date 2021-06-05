@@ -49,6 +49,20 @@
     <main>
         <?php if($client_name): ?>
             <h2>Sorteerfiche <?php echo $client_name; ?></h2>
+
+            <div class="wishlist">
+                <div class="wishlist__item">
+                    <img class="wishlist__item__checkmark" src="./images/check-not-finished.svg" alt="Nog niet klaargezet">
+                    <span class="wishlist__item__name">Groenten</span>
+                    <span class="wishlist__item__amount">2x</span>
+                </div>
+                <div class="wishlist__item">
+                    <img class="wishlist__item__checkmark" src="./images/check-not-finished.svg" alt="Nog niet klaargezet">
+                    <span class="wishlist__item__name">Fruit</span>
+                    <span class="wishlist__item__amount">1x</span>
+                </div>
+            </div>
+
         <?php else: ?>
             <h2>Klant niet gevonden</h2>
         <?php endif; ?>

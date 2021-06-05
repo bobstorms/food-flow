@@ -1,0 +1,26 @@
+.wishlist {
+    margin-top: 20px;
+}
+
+.wishlist__item {
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.wishlist__item__checkmark {
+    margin-right: 10px;
+}
+
+.wishlist__item__name {
+    color: $color-text;
+}
+
+.wishlist__item__amount {
+    color: $color-green;
+    font-weight: $font-weight-medium;
+
+    margin-left: auto;
+}
