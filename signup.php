@@ -35,6 +35,9 @@
 <body>
 
     <header class="header">
+        <a href="login.php" class="header__back-icon">
+            <img src="./images/arrow-back.svg" alt="Terug">
+        </a>
         <img src="./images/logo-word.svg" alt="Foodflow" class="header__logo"/>
     </header>
 
