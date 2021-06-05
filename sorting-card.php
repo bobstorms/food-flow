@@ -7,6 +7,7 @@
     }
 
     include_once("./classes/Client.php");
+    include_once("./classes/Wishlist.php");
 
     if($_GET["id"]) {
         $client_id = $_GET["id"];
@@ -15,6 +16,8 @@
             $client = new Client();
             $client->loadClientById($client_id);
             $client_name = $client->getName();
+
+            $items = Wishlist::getAllItemsByClientId($client_id);
         } catch (Exception $e) {
             $error = $e->getMessage();
         }
@@ -51,16 +54,20 @@
             <h2>Sorteerfiche <?php echo $client_name; ?></h2>
 
             <div class="wishlist">
-                <div class="wishlist__item">
-                    <img class="wishlist__item__checkmark" src="./images/check-not-finished.svg" alt="Nog niet klaargezet">
-                    <span class="wishlist__item__name">Groenten</span>
-                    <span class="wishlist__item__amount">2x</span>
-                </div>
-                <div class="wishlist__item">
-                    <img class="wishlist__item__checkmark" src="./images/check-not-finished.svg" alt="Nog niet klaargezet">
-                    <span class="wishlist__item__name">Fruit</span>
-                    <span class="wishlist__item__amount">1x</span>
-                </div>
+
+                <?php foreach($items as $item): ?>
+                    <div class="wishlist__item">
+                        <?php if(!$item["is_ready"]): ?>
+                            <img class="wishlist__item__checkmark" src="./images/check-not-finished.svg" alt="Nog niet klaargezet">
+                        <?php else: ?>
+                            <img class="wishlist__item__checkmark" src="./images/check-finished.svg" alt="Al klaargezet">
+                        <?php endif; ?>
+
+                        <span class="wishlist__item__name"><?php echo $item["name"]; ?></span>
+                        <span class="wishlist__item__amount"><?php echo $item["quantity"] ?>x</span>
+                    </div>
+                <?php endforeach; ?>
+
             </div>
 
         <?php else: ?>
