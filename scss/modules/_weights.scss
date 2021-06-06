@@ -1,0 +1,31 @@
+.weights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+
+    margin-bottom: 20px;
+}
+
+.weights__form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.weights__form span {
+    color: $color-text;
+}
+
+.weights__form input {
+    width: 75%;
+    margin-left: auto;
+
+    height: 50px;
+    border: none;
+    border-radius: .75em;
+    background-color: $color-light-grey;
+    padding: $padding-small;
+    padding-top: 13px;
+
+    font-size: $font-size-text;
+}
