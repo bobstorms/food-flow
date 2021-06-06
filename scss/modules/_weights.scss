@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 1.2em;
 
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .weights__form {
@@ -16,7 +16,7 @@
     color: $color-text;
 }
 
-.weights__form input {
+.weights__form__input {
     width: 75%;
     margin-left: auto;
 
@@ -28,4 +28,9 @@
     padding-top: 13px;
 
     font-size: $font-size-text;
+}
+
+.weights__form__input--success {
+    border: 1px solid $color-green;
+    box-shadow: 0 0 5px $color-green;
 }

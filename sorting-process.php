@@ -72,13 +72,13 @@
                 <?php for($i = 0; $i < $current_item["quantity"]; $i++): ?>
                     <div class="weights__form">
                         <span>Bak <?php echo $i + 1; ?></span>
-                        <input type="number" name="weight<?php echo $i + 1; ?>" id="weight<?php echo $i + 1; ?>" min="0">
+                        <input type="number" name="weight<?php echo $i + 1; ?>" id="weight<?php echo $i + 1; ?>" min="0" class="weights__form__input">
                     </div>
                 <?php endfor; ?>
 
             </div>
 
-            <button class="button button--disabled">Volgende</button>
+            <button class="button button--disabled" id="next-button" data-disabled="true">Volgende</button>
 
         <?php else: ?>
             <h2>Klant niet gevonden</h2>
@@ -89,5 +89,7 @@
         <?php endif; ?>
 
     </main>
+
+    <script src="js/sorting.js"></script>
 
 </body>

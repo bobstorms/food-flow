@@ -31,4 +31,5 @@
 .button--disabled {
     background-color: $color-grey;
     color: $color-white;
+    cursor: not-allowed;
 }
