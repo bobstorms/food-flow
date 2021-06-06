@@ -52,6 +52,9 @@
     <main>
         <?php if($client_name): ?>
             <h2>Sorteerfiche <?php echo $client_name; ?></h2>
+            <p class="intro-text">
+                Dit zijn alle producten die voor de klant <strong><?php echo $client_name; ?></strong> klaargezet moeten worden.
+            </p>
 
             <div class="wishlist">
 

@@ -63,6 +63,9 @@
         <?php if($client_name): ?>
 
             <h2><?php echo $current_item["name"]; ?></h2>
+            <p class="intro-text">
+                Vul de gewichten in voor alle bakken.
+            </p>
             <img src="<?php echo $current_item["image"]; ?>" alt="<?php echo $current_item["name"]; ?>" class="food-image">
 
             <div class="weights">
