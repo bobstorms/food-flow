@@ -70,6 +70,7 @@
 
             </div>
 
+            <a href="sorting-process.php?id=<?php echo $client_id; ?>" class="button">Start met sorteren!</a>
         <?php else: ?>
             <h2>Klant niet gevonden</h2>
         <?php endif; ?>
