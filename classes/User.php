@@ -73,7 +73,8 @@
 
             if(Password::verify($this->password, $hash)) {
                 session_start();
-                $_SESSION["user"] = $this->email;
+                $_SESSION["userEmail"] = $result["email"];
+                $_SESSION["userId"] = $result["id"];
             } else {
                 throw new Exception("Het e-mailadres en/of wachtwoord is niet correct.");
             }

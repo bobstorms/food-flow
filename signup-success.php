@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    if($_SESSION["user"]) {
+    if($_SESSION["userId"]) {
         header("Location: index.php");
         die();
     }
