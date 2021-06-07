@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+
+    session_start();
+    if(!$_SESSION["userId"]) {
+        header("Location: login.php");
+        die();
+    }
+
+    var_dump($_SESSION);
+    
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

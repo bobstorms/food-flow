@@ -52,28 +52,34 @@
     <main>
         <?php if($client_name): ?>
             <h2>Sorteerfiche <?php echo $client_name; ?></h2>
-            <p class="intro-text">
-                Dit zijn alle producten die voor de klant <strong><?php echo $client_name; ?></strong> klaargezet moeten worden.
-            </p>
 
-            <div class="wishlist">
+            <?php if(!isset($error)): ?>
 
-                <?php foreach($items as $item): ?>
-                    <div class="wishlist__item">
-                        <?php if(!$item["is_ready"]): ?>
-                            <img class="wishlist__item__checkmark" src="./images/check-not-finished.svg" alt="Nog niet klaargezet">
-                        <?php else: ?>
-                            <img class="wishlist__item__checkmark" src="./images/check-finished.svg" alt="Al klaargezet">
-                        <?php endif; ?>
+                <p class="intro-text">
+                    Dit zijn alle producten die voor de klant <strong><?php echo $client_name; ?></strong> klaargezet moeten worden.
+                </p>
 
-                        <span class="wishlist__item__name"><?php echo $item["name"]; ?></span>
-                        <span class="wishlist__item__amount"><?php echo $item["quantity"] ?>x</span>
-                    </div>
-                <?php endforeach; ?>
+                <div class="wishlist">
 
-            </div>
+                    <?php foreach($items as $item): ?>
+                        <div class="wishlist__item">
+                            <?php if(!$item["is_ready"]): ?>
+                                <img class="wishlist__item__checkmark" src="./images/check-not-finished.svg" alt="Nog niet klaargezet">
+                            <?php else: ?>
+                                <img class="wishlist__item__checkmark" src="./images/check-finished.svg" alt="Al klaargezet">
+                            <?php endif; ?>
 
-            <a href="sorting-process.php?id=<?php echo $client_id; ?>" class="button">Start met sorteren!</a>
+                            <span class="wishlist__item__name"><?php echo $item["name"]; ?></span>
+                            <span class="wishlist__item__amount"><?php echo $item["quantity"] ?>x</span>
+                        </div>
+                    <?php endforeach; ?>
+
+                </div>
+
+                <a href="sorting-process.php?id=<?php echo $client_id; ?>" class="button">Start met sorteren!</a>
+
+            <?php endif; ?>
+            
         <?php else: ?>
             <h2>Klant niet gevonden</h2>
         <?php endif; ?>
