@@ -26,15 +26,15 @@
             return $items;
         }
 
-        public static function getItemsToBeSortedByClientId($id) {
+        public static function getItemToBeSortedByClientId($id) {
             include_once("./database/Db.php");
             $conn = Db::getInstance();
 
-            $q = $conn->prepare("SELECT wishlist.id, product.name, product.image, wishlist.quantity FROM product, wishlist WHERE wishlist.client_id = :id AND wishlist.product_id = product.id AND wishlist.is_ready = 0");
+            $q = $conn->prepare("SELECT wishlist.id, product.name, product.image, wishlist.quantity FROM product, wishlist WHERE wishlist.client_id = :id AND wishlist.product_id = product.id AND wishlist.is_ready = 0 LIMIT 1");
             $q->bindValue(':id', $id);
             $q->execute();
 
-            $result = $q->fetchAll();
+            $result = $q->fetch();
 
             if(!$result[0]) {
                 throw new Exception("Er werd geen sorteerfiche gevonden.");

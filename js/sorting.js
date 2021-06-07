@@ -25,9 +25,11 @@ window.addEventListener("load", () => {
         });
 
         if(inputsFilled === totalInputs) {
+            nextButton.type = "submit";
             nextButton.classList = "button button--primary";
             nextButton.dataset.disabled = false;
         } else {
+            nextButton.type = "button";
             nextButton.classList = "button button--disabled";
             nextButton.dataset.disabled = true;
         }

@@ -17,14 +17,19 @@
             $client->loadClientById($client_id);
             $client_name = $client->getName();
 
-            $items = Wishlist::getItemsToBeSortedByClientId($client_id);
-            $current_item = $items[0];
+            $current_item = Wishlist::getItemToBeSortedByClientId($client_id);
+            
+            $_SESSION["wishlistId"] = $current_item["id"];
         } catch (Exception $e) {
             $error = $e->getMessage();
         }
 
     } else {
         $error = "Er werd geen \"id\" van de klant meegegeven.";
+    }
+
+    if(!empty($_POST)) {
+        var_dump($_POST);
     }
 
 ?><!DOCTYPE html>
@@ -68,20 +73,19 @@
             </p>
             <img src="<?php echo $current_item["image"]; ?>" alt="<?php echo $current_item["name"]; ?>" class="food-image">
 
-            <div class="weights">
+            <form action="" method="post" class="weights">
                 <h3>Gewicht</h3>
                 <?php echo $current_item["quality"]; ?>
 
                 <?php for($i = 0; $i < $current_item["quantity"]; $i++): ?>
                     <div class="weights__form">
                         <span>Bak <?php echo $i + 1; ?></span>
-                        <input type="number" name="weight<?php echo $i + 1; ?>" id="weight<?php echo $i + 1; ?>" min="0" class="weights__form__input">
+                        <input type="number" name="weight<?php echo $i + 1; ?>" id="weight<?php echo $i + 1; ?>" min="0" step="0.01" class="weights__form__input">
                     </div>
                 <?php endfor; ?>
 
-            </div>
-
-            <button class="button button--disabled" id="next-button" data-disabled="true">Volgende</button>
+                <button type="button" class="button button--disabled" id="next-button" data-disabled="true">Volgende</button>
+            </form>
 
         <?php else: ?>
             <h2>Klant niet gevonden</h2>

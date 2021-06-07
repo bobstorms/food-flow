@@ -36,7 +36,8 @@
         </div>
         <h2>Rittenplanning</h2>
         <p><strong>Welcome to my website!</strong></p>
-        <p>Email: <?php echo $_SESSION["user"]; ?></p>
+        <p>ID: <?php echo $_SESSION["userId"]; ?></p>
+        <p>Email: <?php echo $_SESSION["userEmail"]; ?></p>
     </main>
 </body>
 </html>
