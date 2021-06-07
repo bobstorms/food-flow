@@ -8,6 +8,7 @@
 
     include_once("./classes/Client.php");
     include_once("./classes/Wishlist.php");
+    include_once("./classes/OrderTicket.php");
 
     if($_GET["id"]) {
         $client_id = $_GET["id"];
@@ -29,7 +30,27 @@
     }
 
     if(!empty($_POST)) {
-        var_dump($_POST);
+        try {
+            $order_ticket = new OrderTicket();
+            $order_ticket->setUserId($_SESSION["userId"]);
+            $order_ticket->setWishlistId($_SESSION["wishlistId"]);
+    
+            date_default_timezone_set('Europe/Brussels');
+            $date = date("d/m/Y H:i:s");
+            $order_ticket->setDate($date);
+    
+            $order_ticket->save();
+    
+            $order_ticket_id = OrderTicket::getIdByDate($date);
+
+            $number_of_values = count($_POST);
+    
+            for($i; $i < $number_of_values; $i++) {
+                
+            }
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+        }
     }
 
 ?><!DOCTYPE html>
