@@ -11,25 +11,6 @@
     include_once("./classes/OrderTicket.php");
     include_once("./classes/Weight.php");
 
-    if($_GET["id"]) {
-        $client_id = $_GET["id"];
-
-        try {
-            $client = new Client();
-            $client->loadClientById($client_id);
-            $client_name = $client->getName();
-
-            $current_item = Wishlist::getItemToBeSortedByClientId($client_id);
-            
-            $_SESSION["wishlistId"] = $current_item["id"];
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-        }
-
-    } else {
-        $error = "Er werd geen \"id\" van de klant meegegeven.";
-    }
-
     if(!empty($_POST)) {
         try {
             $order_ticket = new OrderTicket();
@@ -56,12 +37,38 @@
                 $weight->setWeight($currentWeight);
 
                 $result = $weight->save();
-                var_dump($result);
             }
+
+            Wishlist::setWishlistReady($_GET["id"], $_SESSION["productId"]);
         } catch (Exception $e) {
             $error = $e->getMessage();
         }
     }
+
+    if($_GET["id"]) {
+        $client_id = $_GET["id"];
+
+        try {
+            $client = new Client();
+            $client->loadClientById($client_id);
+            $client_name = $client->getName();
+
+            $current_item = Wishlist::getItemToBeSortedByClientId($client_id);
+            
+            $_SESSION["wishlistId"] = $current_item["id"];
+            $_SESSION["productId"] = $current_item["product_id"];
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+
+            if($error = "Alle items werden gesorteerd.") {
+                header("Location: order-ticket.php?id=" . $client_id);
+            }
+        }
+
+    } else {
+        $error = "Er werd geen \"id\" van de klant meegegeven.";
+    }
+
 
 ?><!DOCTYPE html>
 <html lang="nl">
