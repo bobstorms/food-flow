@@ -59,40 +59,46 @@
 
             <?php if(!isset($error)): ?>
 
-                <div class="order-ticket__details">
-                    <div class="order-ticket__address">
-                        <span class="order-ticket__address__name"><?php echo $client_name; ?></span>
-                        <span class="span order-ticket__address__street"><?php echo $client_street; ?></span>
-                        <span class="span order-ticket__address__city"><?php echo $client_city; ?></span>
-                    </div>
-                    <div class="order-ticket__date">
-                        <?php echo $order_ticket_date; ?>
-                    </div>
-                </div>
+                <div class="order-ticket">
 
-                <div class="wishlist">
-
-                    <?php foreach($items as $item): ?>
-                        <div class="wishlist__item">
-                            <?php if(!$item["is_ready"]): ?>
-                                <img class="wishlist__item__checkmark" src="./images/check-not-finished.svg" alt="Nog niet klaargezet">
-                            <?php else: ?>
-                                <img class="wishlist__item__checkmark" src="./images/check-finished.svg" alt="Al klaargezet">
-                            <?php endif; ?>
-
-                            <span class="wishlist__item__name"><?php echo $item["name"]; ?></span>
-                            <span class="wishlist__item__amount"><?php echo $item["total_weight"] ?> kg</span>
+                    <div class="order-ticket__details">
+                        <div class="order-ticket__address">
+                            <span class="order-ticket__address__name"><?php echo $client_name; ?></span>
+                            <span class="span order-ticket__address__street"><?php echo $client_street; ?></span>
+                            <span class="span order-ticket__address__city"><?php echo $client_city; ?></span>
                         </div>
-                    <?php endforeach; ?>
+                        <div class="order-ticket__date">
+                            <?php echo $order_ticket_date; ?>
+                        </div>
+                    </div>
 
-                    <hr class="total-ruler">
+                    <div class="wishlist">
 
-                    <div class="total-order-ticket">
-                        Totaal
-                        <span><?php echo $total_weight; ?> kg</span>
+                        <?php foreach($items as $item): ?>
+                            <div class="wishlist__item">
+                                <?php if(!$item["is_ready"]): ?>
+                                    <img class="wishlist__item__checkmark" src="./images/check-not-finished.svg" alt="Nog niet klaargezet">
+                                <?php else: ?>
+                                    <img class="wishlist__item__checkmark" src="./images/check-finished.svg" alt="Al klaargezet">
+                                <?php endif; ?>
+
+                                <span class="wishlist__item__name"><?php echo $item["name"]; ?></span>
+                                <span class="wishlist__item__amount"><?php echo $item["total_weight"] ?> kg</span>
+                            </div>
+                        <?php endforeach; ?>
+
+                        <hr class="total-ruler">
+
+                        <div class="total-order-ticket">
+                            Totaal
+                            <span><?php echo $total_weight; ?> kg</span>
+                        </div>
+
                     </div>
 
                 </div>
+
+                <a href="index.php" class="button button--primary">Voltooid</a>
 
             <?php endif; ?>
 
