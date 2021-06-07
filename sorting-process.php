@@ -61,6 +61,8 @@
             $error = $e->getMessage();
 
             if($error = "Alle items werden gesorteerd.") {
+                unset($_SESSION["wishlistId"]);
+                unset($_SESSION["productId"]);
                 header("Location: order-ticket.php?id=" . $client_id);
             }
         }
@@ -118,7 +120,7 @@
                 <?php for($i = 0; $i < $current_item["quantity"]; $i++): ?>
                     <div class="weights__form">
                         <span>Bak <?php echo $i + 1; ?></span>
-                        <input type="number" name="weight<?php echo $i + 1; ?>" id="weight<?php echo $i + 1; ?>" min="0" step="0.01" class="weights__form__input">
+                        <input type="number" name="weight<?php echo $i + 1; ?>" id="weight<?php echo $i + 1; ?>" min="0" step="0.001" class="weights__form__input">
                     </div>
                 <?php endfor; ?>
 
