@@ -51,4 +51,44 @@
             $this->name = $name;
             return $this;
         }
+
+        public function getAddressStreet() {
+            return $this->addressStreet;
+        }
+
+
+        public function setAddressStreet($addressStreet) {
+            $this->addressStreet = $addressStreet;
+            return $this;
+        }
+
+        public function getAddressNumber() {
+            return $this->addressNumber;
+        }
+
+
+        public function setAddressNumber($addressNumber) {
+            $this->addressNumber = $addressNumber;
+            return $this;
+        }
+
+
+        public function getCity() {
+            return $this->city;
+        }
+
+
+        public function setCity($city) {
+            $this->city = $city;
+            return $this;
+        }
+
+        public function getPostalCode() {
+            return $this->postalCode;
+        }
+
+        public function setPostalCode($postalCode) {
+            $this->postalCode = $postalCode;
+            return $this;
+        }
     }

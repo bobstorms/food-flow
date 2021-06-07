@@ -15,7 +15,10 @@
         try {
             $client = new Client();
             $client->loadClientById($client_id);
+
             $client_name = $client->getName();
+            $client_street = $client->getAddressStreet() . " " . $client->getAddressNumber();
+            $client_city = $client->getPostalCode() . " " . $client->getCity();
 
             $order_ticket_date = Wishlist::getOrderTicketDateByClientId($client_id);
             $items = Wishlist::getAllItemsAndWeightsByClientId($client_id);
@@ -54,7 +57,16 @@
         <?php if($client_name): ?>
             <h2>Leveringsbon <?php echo $client_name; ?></h2>
 
-            <p><?php echo $order_ticket_date; ?></p>
+            <div class="order-ticket__details">
+                <div class="order-ticket__address">
+                    <span class="order-ticket__address__name"><?php echo $client_name; ?></span>
+                    <span class="span order-ticket__address__street"><?php echo $client_street; ?></span>
+                    <span class="span order-ticket__address__city"><?php echo $client_city; ?></span>
+                </div>
+                <div class="order-ticket__date">
+                    <?php echo $order_ticket_date; ?>
+                </div>
+            </div>
 
             <div class="wishlist">
 

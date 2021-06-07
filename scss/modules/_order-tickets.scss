@@ -1,0 +1,20 @@
+.order-ticket__details {
+    display: flex;
+    flex-direction: row;
+    color: $color-text;
+    margin-top: 25px;
+}
+
+.order-ticket__address {
+    display: flex;
+    flex-direction: column;
+    gap: .2em;
+}
+
+.order-ticket__address__name, .order-ticket__date {
+    font-weight: $font-weight-medium;
+}
+
+.order-ticket__date {
+    margin-left: auto;
+}
