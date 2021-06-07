@@ -107,6 +107,10 @@
 
             $result = $q->fetchAll();
 
+            if(!$result[0]) {
+                throw new Exception("Er werd geen leveringsbon gevonden.");
+            }
+
             $items = [];
 
             foreach($result as $r) {
