@@ -2,7 +2,7 @@
     margin-top: 10px;
 }
 
-.client-list__item a {
+.client-list__item a, .client-list__item div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,11 +15,16 @@
     border-bottom: 1px solid $color-grey;
 }
 
-.client-list__item a span {
+.client-list__item a span, .client-list__item div span {
     font-size: 1em;
 }
 
 .client-list__item a img {
     margin-left: auto;
     height: 15px;
+}
+
+.client-list__item div img {
+    margin-left: auto;
+    height: 17px;
 }

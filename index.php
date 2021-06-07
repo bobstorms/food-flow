@@ -44,10 +44,19 @@
 
             <?php foreach($clients as $client): ?>
                 <div class="client-list__item">
-                    <a href="sorting-card.php?id=<?php echo $client["id"]; ?>">
-                        <span><?php echo $client["name"]; ?></span>
-                        <img src="./images/arrow-forward.svg" alt="Open">
-                    </a>
+
+                    <?php if(!$client["is_ready"]): ?>
+                        <a href="sorting-card.php?id=<?php echo $client["id"]; ?>">
+                            <span><?php echo $client["name"]; ?></span>
+                            <img src="./images/arrow-forward.svg" alt="Open">
+                        </a>
+                    <?php else: ?>
+                        <div>
+                            <span><?php echo $client["name"]; ?></span>
+                            <img src="./images/icon-success.svg" alt="Voltooid">
+                        </div>
+                    <?php endif; ?>
+
                 </div>
             <?php endforeach; ?>
 

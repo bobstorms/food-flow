@@ -8,6 +8,7 @@
         private $postalCode;
         private $phone;
         private $email;
+        private $is_ready;
 
         public static function setClientReady($id) {
             include_once("./database/Db.php");
@@ -51,6 +52,7 @@
             $this->postalCode = $client["postal_code"];
             $this->phone = $client["phone"];
             $this->email = $client["email"];
+            $this->is_ready = filter_var($client["is_ready"], FILTER_VALIDATE_BOOLEAN);
         }
 
         public function getName() {
