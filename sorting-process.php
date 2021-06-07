@@ -63,6 +63,9 @@
             if($error = "Alle items werden gesorteerd.") {
                 unset($_SESSION["wishlistId"]);
                 unset($_SESSION["productId"]);
+
+                Client::setClientReady($client_id);
+
                 header("Location: order-ticket.php?id=" . $client_id);
             }
         }

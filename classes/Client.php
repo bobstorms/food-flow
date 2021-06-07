@@ -9,6 +9,16 @@
         private $phone;
         private $email;
 
+        public static function setClientReady($id) {
+            include_once("./database/Db.php");
+            $conn = Db::getInstance();
+
+            $q = $conn->prepare("UPDATE client SET is_ready = 1 WHERE id = :id");
+            $q->bindValue(':id', $id);
+
+            return $q->execute();
+        }
+
         public static function getAllClients() {
             include_once("./database/Db.php");
             $conn = Db::getInstance();
