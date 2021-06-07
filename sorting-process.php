@@ -9,6 +9,7 @@
     include_once("./classes/Client.php");
     include_once("./classes/Wishlist.php");
     include_once("./classes/OrderTicket.php");
+    include_once("./classes/Weight.php");
 
     if($_GET["id"]) {
         $client_id = $_GET["id"];
@@ -46,7 +47,16 @@
             $number_of_values = count($_POST);
     
             for($i; $i < $number_of_values; $i++) {
-                
+                $index = $i + 1;
+                $input_name = "weight" . $index;
+                $currentWeight = floatval($_POST[$input_name]);
+
+                $weight = new Weight();
+                $weight->setOrderTicketId($order_ticket_id);
+                $weight->setWeight($currentWeight);
+
+                $result = $weight->save();
+                var_dump($result);
             }
         } catch (Exception $e) {
             $error = $e->getMessage();
