@@ -46,7 +46,7 @@
         <h2>Rittenplanning</h2>
 
         <div class="route__loading">
-            <span>Route aan het berekenen...</span>
+            <span>Meest optimale route aan het berekenen...</span>
             <img src="./images/loading.gif" alt="Laden...">
         </div>
 
@@ -58,6 +58,6 @@
 
     </main>
 
-    <!-- <script src="js/route.js"></script> -->
+    <script src="js/route.js"></script>
 </body>
 </html>

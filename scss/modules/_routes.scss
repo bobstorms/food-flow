@@ -72,6 +72,13 @@
     color: $color-text;
 }
 
+.route__loading span {
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+    line-height: 1.5em;
+}
+
 .route__loading img {
     height: 30px;
     margin-top: 10px;

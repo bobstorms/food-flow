@@ -1,5 +1,7 @@
 window.addEventListener("load", () => {
 
+    const loadingDiv = document.querySelector(".route__loading");
+
     const key = "FUfuvyGPy9tbvsWsNS9ReZwR5qJvzhn0";
 
     const foodsaversAddress = {
@@ -56,7 +58,8 @@ window.addEventListener("load", () => {
         });
 
     const appendAllStops = (stops) => {
-
+        
+        loadingDiv.style.display = "none";
         const routeDiv = document.querySelector(".route");
 
         stops.forEach((element, index) => {
@@ -70,7 +73,7 @@ window.addEventListener("load", () => {
     
                 let icon = document.createElement("img");
                 icon.src = "./images/route-stop-complete.svg";    
-                
+
                 iconDiv.appendChild(icon);
     
                 let infoDiv = document.createElement("div");
