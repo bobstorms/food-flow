@@ -5,9 +5,9 @@
 # https://sequel-ace.com/
 # https://github.com/Sequel-Ace/Sequel-Ace
 #
-# Host: localhost (MySQL 5.7.32)
-# Database: foodflow
-# Generation Time: 2021-06-05 16:05:13 +0000
+# Host: ID299174_foodflow.db.webhosting.be (MySQL 5.7.33-36-log)
+# Database: ID299174_foodflow
+# Generation Time: 2021-06-09 23:58:01 +0000
 # ************************************************************
 
 
@@ -34,29 +34,30 @@ CREATE TABLE `client` (
   `postal_code` varchar(10) NOT NULL DEFAULT '',
   `phone` varchar(15) NOT NULL DEFAULT '',
   `email` varchar(300) NOT NULL DEFAULT '',
+  `is_ready` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
 
-INSERT INTO `client` (`id`, `name`, `address_street`, `address_number`, `city`, `postal_code`, `phone`, `email`)
+INSERT INTO `client` (`id`, `name`, `address_street`, `address_number`, `city`, `postal_code`, `phone`, `email`, `is_ready`)
 VALUES
-	(1,'AMAI','Grote Markt','21','Mechelen','2800','',''),
-	(2,'Asiel en Migratie','Sint Romboutskerkhof','1','Mechelen','2800','',''),
-	(3,'Sociaal Centrum','Twaalf Apostelenstraat','17','Mechelen','2800','',''),
-	(4,'OCMW Bornem','Stationsstraat','22','Mechelen','2800','',''),
-	(5,'OCMW Putte','Mechelbaan','547','Putte','2580','',''),
-	(6,'De Keeting','Kroonstraat','64','Mechelen','2800','',''),
-	(7,'De Refuge','Onze-Lieve-Vrouwestraat','52','Mechelen','2800','',''),
-	(8,'CAW Stassart 2','Stassartstraat','2','Mechelen','2800','',''),
-	(9,'Emmaus Juneco','Korte Schipstraat','16','Mechelen','2800','',''),
-	(10,'Emmaus De Hefboom','Steenweg op Heindonck','103','Heffen','2801','',''),
-	(11,'De Nieuwe Weg','Lange Schipstraat','25','Mechelen','2800','',''),
-	(12,'Sint Vincentius Noord','Liersesteenweg','40','Mechelen','2800','',''),
-	(13,'Sint Vincentius Zuid','Antoon Spinoystraat','8','Mechelen','2800','',''),
-	(14,'Bohets Mechelen','Krommestraat','7','Mechelen','2800','',''),
-	(15,'JAM Otterbeek','Tivolilaan','45','Mechelen','2800','','');
+	(1,'AMAI','Grote Markt','21','Mechelen','2800','','',1),
+	(2,'Asiel en Migratie','Sint Romboutskerkhof','1','Mechelen','2800','','',1),
+	(3,'Sociaal Centrum','Twaalf Apostelenstraat','17','Mechelen','2800','','',0),
+	(4,'OCMW Bornem','Stationsstraat','22','Mechelen','2800','','',0),
+	(5,'OCMW Putte','Mechelbaan','547','Putte','2580','','',0),
+	(6,'De Keeting','Kroonstraat','64','Mechelen','2800','','',0),
+	(7,'De Refuge','Onze-Lieve-Vrouwestraat','52','Mechelen','2800','','',0),
+	(8,'CAW Stassart 2','Stassartstraat','2','Mechelen','2800','','',0),
+	(9,'Emmaus Juneco','Korte Schipstraat','16','Mechelen','2800','','',0),
+	(10,'Emmaus De Hefboom','Steenweg op Heindonck','103','Heffen','2801','','',0),
+	(11,'De Nieuwe Weg','Lange Schipstraat','25','Mechelen','2800','','',0),
+	(12,'Sint Vincentius Noord','Liersesteenweg','40','Mechelen','2800','','',0),
+	(13,'Sint Vincentius Zuid','Antoon Spinoystraat','8','Mechelen','2800','','',0),
+	(14,'Bohets Mechelen','Krommestraat','7','Mechelen','2800','','',0),
+	(15,'JAM Otterbeek','Tivolilaan','45','Mechelen','2800','','',0);
 
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -86,13 +87,13 @@ DROP TABLE IF EXISTS `order_ticket`;
 CREATE TABLE `order_ticket` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
-  `client_product_id` int(11) unsigned NOT NULL,
-  `date` date NOT NULL,
+  `wishlist_id` int(11) unsigned NOT NULL,
+  `date` varchar(30) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `client_product_id` (`client_product_id`),
+  KEY `client_product_id` (`wishlist_id`),
   CONSTRAINT `order_ticket_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `order_ticket_ibfk_2` FOREIGN KEY (`client_product_id`) REFERENCES `wishlist` (`id`)
+  CONSTRAINT `order_ticket_ibfk_2` FOREIGN KEY (`wishlist_id`) REFERENCES `wishlist` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -107,7 +108,7 @@ CREATE TABLE `product` (
   `name` varchar(300) NOT NULL DEFAULT '',
   `image` varchar(300) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
@@ -137,9 +138,28 @@ DROP TABLE IF EXISTS `ride`;
 CREATE TABLE `ride` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
-  PRIMARY KEY (`id`)
+  `client_id` int(11) unsigned NOT NULL,
+  `is_ready` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client_id` (`client_id`),
+  CONSTRAINT `ride_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `ride` WRITE;
+/*!40000 ALTER TABLE `ride` DISABLE KEYS */;
+
+INSERT INTO `ride` (`id`, `date`, `client_id`, `is_ready`)
+VALUES
+	(1,'2021-06-09',1,0),
+	(2,'2021-06-09',5,0),
+	(3,'2021-06-09',3,0),
+	(4,'2021-06-09',9,0),
+	(5,'2021-06-09',2,0),
+	(6,'2021-06-09',4,0),
+	(7,'2021-06-09',10,0);
+
+/*!40000 ALTER TABLE `ride` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table stop
@@ -177,15 +197,15 @@ CREATE TABLE `user` (
   `is_approved` tinyint(1) NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `is_approved`, `is_admin`)
 VALUES
-	(1,'Bob','Storms','bob.storms@hotmail.be','$2y$12$GcD6obcoGlpCAwdwpkQFMeF4laWHk3wHH7UxHC1w5DzEsUDOQxwE.',1,1),
-	(3,'Testgebruiker','Foodflow','testgebruiker.foodflow@bobstorms.be','$2y$12$h6b9qvFyOoZc3ow0GAmbmuAFDnsxkifFunK1r0QrAfB4veTIcjh.i',1,0);
+	(1,'Bob','Storms','bob.storms@hotmail.be','$2y$12$5KKfM1WjoUrVTHts30SCV.LmEZjoFLNOB4tQFgzoMVVwfYXjWjpFC',1,0),
+	(2,'Testgebruiker','Foodflow','testgebruiker.foodflow@bobstorms.be','$2y$12$Vj1qsVSM3BY0Y/BDURo7VOsM/BcB1CZ/WyEnyeRCNbQJgVecDRfDq',1,0);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -199,7 +219,7 @@ DROP TABLE IF EXISTS `weight`;
 CREATE TABLE `weight` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `order_ticket_id` int(11) unsigned NOT NULL,
-  `weight` decimal(19,2) NOT NULL,
+  `weight` decimal(20,3) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `order_ticket_id` (`order_ticket_id`),
   CONSTRAINT `weight_ibfk_1` FOREIGN KEY (`order_ticket_id`) REFERENCES `order_ticket` (`id`)
@@ -223,7 +243,7 @@ CREATE TABLE `wishlist` (
   KEY `product_id` (`product_id`),
   CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
   CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `wishlist` WRITE;
 /*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
@@ -245,7 +265,16 @@ VALUES
 	(13,3,2,4,0),
 	(14,3,3,1,0),
 	(15,3,5,1,0),
-	(16,3,4,1,0);
+	(16,3,4,1,0),
+	(18,4,1,10,0),
+	(19,4,2,5,0),
+	(20,4,5,3,0),
+	(21,4,4,2,0),
+	(22,5,1,20,0),
+	(23,5,2,5,0),
+	(24,5,4,2,0),
+	(25,5,5,4,0),
+	(26,5,7,5,0);
 
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 UNLOCK TABLES;
