@@ -1,40 +1,57 @@
 window.addEventListener("load", () => {
 
-    let locations = [
-        "Oude Baan 1H, 2800 Mechelen",
-        "Grote Markt 21, 2800 Mechelen",
-        "Mechelbaan 547, 2580 Putte",
-        "Twaalf Apostelenstraat 17, 2800 Mechelen",
-        "Korte Schipstraat 16, 2800 Mechelen",
-        "Sint Romboutskerkhof 1, 2800 Mechelen",
-        "Stationsstraat 22, 2800 Mechelen",
-        "Steenweg op Heindonck 103, 2801 Heffen"
-    ];
-
-    let locationsOrdered = [];
-
     const key = "FUfuvyGPy9tbvsWsNS9ReZwR5qJvzhn0";
 
-    let json = {
-        "locations": locations
+    const foodsaversAddress = {
+        id: "NULL",
+        name: "Foodsavers",
+        address_street: "Oude Baan",
+        address_number: "1H",
+        postal_code: "2800",
+        city: "Mechelen"
     };
 
-    json = JSON.stringify(json);
+    let stops;
+    let stopsOrdered = [];
 
-    let url = `http://www.mapquestapi.com/directions/v2/optimizedroute?key=${key}&json=${json}`;
+    let locations = [];
 
-    
-    fetch(url)
+    fetch("https://www.bobstorms.be/foodflow/get-stops.php")
         .then(response => response.json())
-        .then(data => {
-            let locationSequence = data.route.locationSequence;
+        .then(json => {
+            stops = json.data;
 
-            for(let i = 0; i < locationSequence.length; i++) {
-                let index = locationSequence[i];
-                locationsOrdered.push(locations[index]);
-            }
+            stops.unshift(foodsaversAddress);
+            stops.push(foodsaversAddress);
+            
+            console.log(stops);
 
-            console.log(locationsOrdered);
+            stops.forEach(element => {
+                let address = element.address_street + " " + element.address_number + ", " + element.postal_code + " " + element.city;
+                console.log(address);
+                locations.push(address);
+            });
+
+            let jsonLocations = {
+                "locations": locations
+            };
+            jsonLocations = JSON.stringify(jsonLocations);
+
+            let url = `http://www.mapquestapi.com/directions/v2/optimizedroute?key=${key}&json=${jsonLocations}`;
+
+            fetch(url)
+            .then(response => response.json())
+            .then(json => {
+                let locationSequence = json.route.locationSequence;
+    
+                for(let i = 0; i < locationSequence.length; i++) {
+                    let index = locationSequence[i];
+                    stopsOrdered.push(stops[index]);
+                }
+    
+                console.log(stopsOrdered);
+            });
+
         });
 
 });
