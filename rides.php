@@ -34,10 +34,33 @@
                 <span>Ritten</span>
             </a>
         </div>
+
         <h2>Rittenplanning</h2>
-        <p><strong>Welcome to my website!</strong></p>
-        <p>ID: <?php echo $_SESSION["userId"]; ?></p>
-        <p>Email: <?php echo $_SESSION["userEmail"]; ?></p>
+
+        <div class="route">
+        
+            <div class="route__stop">
+                <div class="route__stop__icon">
+                    <img src="./images/route-stop-complete.svg" alt="Klaar">
+                </div>
+                <div class="route__stop__info">
+                    <span class="route__stop__info__name">Foodsavers</span>
+                    <span class="route__stop__info__address">Oude Baan 1H, 2800 Mechelen</span>
+                </div>
+            </div>
+
+            <div class="route__stop">
+                <div class="route__stop__icon">
+                    <img src="./images/route-stop-not-complete.svg" alt="Nog niet klaar">
+                    <span class="route__stop__icon__line route__stop__icon__line--complete"></span>
+                </div>
+                <div class="route__stop__info">
+                    <span class="route__stop__info__name">Foodsavers</span>
+                    <span class="route__stop__info__address">Oude Baan 1H, 2800 Mechelen</span>
+                </div>
+            </div>
+
+        </div>
     </main>
 </body>
 </html>
