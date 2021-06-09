@@ -50,6 +50,6 @@
 
     </main>
 
-    <script src="js/route.js"></script>
+    <script src="js/rides.js"></script>
 </body>
 </html>
