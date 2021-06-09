@@ -83,3 +83,9 @@
     height: 30px;
     margin-top: 10px;
 }
+
+.route__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: .8em;
+}

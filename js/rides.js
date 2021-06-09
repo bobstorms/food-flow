@@ -106,16 +106,6 @@ window.addEventListener("load", () => {
 
     const key = "FUfuvyGPy9tbvsWsNS9ReZwR5qJvzhn0";
 
-    const foodsaversAddress = {
-        id: "NULL",
-        name: "Foodsavers",
-        address_street: "Oude Baan",
-        address_number: "1H",
-        postal_code: "2800",
-        city: "Mechelen",
-        is_ready: "0"
-    };
-
     let stopsOrdered = [];
     let locations = [];
 
@@ -127,8 +117,25 @@ window.addEventListener("load", () => {
             .then(json => {
                 let stops = json.data;
 
-                stops.unshift(foodsaversAddress);
-                stops.push(foodsaversAddress);
+                stops.unshift({
+                    id: "NULL",
+                    name: "Foodsavers",
+                    address_street: "Oude Baan",
+                    address_number: "1H",
+                    postal_code: "2800",
+                    city: "Mechelen",
+                    is_ready: "1"
+                });
+
+                stops.push({
+                    id: "NULL",
+                    name: "Foodsavers",
+                    address_street: "Oude Baan",
+                    address_number: "1H",
+                    postal_code: "2800",
+                    city: "Mechelen",
+                    is_ready: "0"
+                });
 
                 stops.forEach(element => {
                     let address = element.address_street + " " + element.address_number + ", " + element.postal_code + " " + element.city;

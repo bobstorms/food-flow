@@ -27,5 +27,14 @@
 
         <h2>Route</h2>
 
+        <div class="route__loading">
+            <span>Route laden...</span>
+            <img src="./images/loading.gif" alt="Laden...">
+        </div>
+
+        <div class="route"></div>
+
     </main>
+
+    <script src="js/route.js"></script>
 </body>
