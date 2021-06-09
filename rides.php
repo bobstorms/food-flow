@@ -45,41 +45,12 @@
 
         <h2>Rittenplanning</h2>
 
-        <div class="route">
-        
-            <!--
-            <div class="route__stop">
-                <div class="route__stop__icon">
-                    <img src="./images/route-stop-complete.svg" alt="Klaar">
-                </div>
-                <div class="route__stop__info">
-                    <span class="route__stop__info__name">Foodsavers</span>
-                    <span class="route__stop__info__address">Oude Baan 1H, 2800 Mechelen</span>
-                </div>
-            </div>
-
-            <?php //foreach($rides as $ride): ?>
-
-                <div class="route__stop">
-                    <div class="route__stop__icon">
-                        <?php //if($ride["is_ready"] === "0"): ?>
-                            <img src="./images/route-stop-not-complete.svg" alt="Nog niet klaar">
-                            <span class="route__stop__icon__line"></span>
-                        <?php //else: ?>
-                            <img src="./images/route-stop-complete.svg" alt="Klaar">
-                            <span class="route__stop__icon__line route__stop__icon__line--complete"></span>
-                        <?php //endif; ?>
-                    </div>
-                    <div class="route__stop__info">
-                        <span class="route__stop__info__name"><?php //echo $ride["name"]; ?></span>
-                        <span class="route__stop__info__address"><?php //echo $ride["address_street"] . " " . $ride["address_number"] . ", " . $ride["postal_code"] . " " . $ride["city"]; ?></span>
-                    </div>
-                </div>
-
-            <?php //endforeach; ?>
-
+        <div class="route__loading">
+            <span>Route aan het berekenen...</span>
+            <img src="./images/loading.gif" alt="Laden...">
         </div>
-        -->
+
+        <div class="route"></div>
 
         <?php if(isset($error)): ?>
             <div class="alert alert--error"><?php echo $error; ?></div>
@@ -87,6 +58,6 @@
 
     </main>
 
-    <script src="js/route.js"></script>
+    <!-- <script src="js/route.js"></script> -->
 </body>
 </html>
