@@ -26,12 +26,9 @@ window.addEventListener("load", () => {
 
             stops.unshift(foodsaversAddress);
             stops.push(foodsaversAddress);
-            
-            console.log(stops);
 
             stops.forEach(element => {
                 let address = element.address_street + " " + element.address_number + ", " + element.postal_code + " " + element.city;
-                console.log(address);
                 locations.push(address);
             });
 
@@ -40,7 +37,7 @@ window.addEventListener("load", () => {
             };
             jsonLocations = JSON.stringify(jsonLocations);
 
-            let url = `http://www.mapquestapi.com/directions/v2/optimizedroute?key=${key}&json=${jsonLocations}`;
+            let url = `https://www.mapquestapi.com/directions/v2/optimizedroute?key=${key}&json=${jsonLocations}`;
 
             fetch(url)
             .then(response => response.json())
