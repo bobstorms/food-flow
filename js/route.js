@@ -1,5 +1,6 @@
 window.addEventListener("load", () => {
 
+    const main = document.querySelector("main");
     const loadingDiv = document.querySelector(".route__loading");
 
     const key = "FUfuvyGPy9tbvsWsNS9ReZwR5qJvzhn0";
@@ -58,6 +59,13 @@ window.addEventListener("load", () => {
         
         loadingDiv.style.display = "none";
         const routeDiv = document.querySelector(".route");
+
+        let button = document.createElement("a");
+        button.innerText = "Start rit!";
+        button.classList = "button button--primary";
+        button.href = "route.php";
+
+        main.appendChild(button);
 
         stops.forEach((element, index) => {
 
