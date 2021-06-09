@@ -6,14 +6,6 @@
         die();
     }
 
-    include_once("./classes/Ride.php");
-
-    try {
-        $rides = Ride::getRidesByDate("2021-06-09");
-    } catch (Exception $e) {
-        $error = $e->getMessage();
-    }
-
 ?><!DOCTYPE html>
 <html lang="nl">
 <head>
