@@ -20,7 +20,8 @@
                 "address_street" => $ride["address_street"],
                 "address_number" => $ride["address_number"],
                 "postal_code" => $ride["postal_code"],
-                "city" => $ride["city"]
+                "city" => $ride["city"],
+                "is_ready" => $ride["is_ready"]
             ];
 
             array_push($data, $array);
