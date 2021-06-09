@@ -1,61 +1,18 @@
 window.addEventListener("load", () => {
 
-    const main = document.querySelector("main");
-    const loadingDiv = document.querySelector(".route__loading");
+    const getDate = () => {
+        let date = new Date();
+        let day = String(date.getDate()).padStart(2, '0');
+        let month = String(date.getMonth() + 1).padStart(2, '0');
+        let year = date.getFullYear();
+        date = day + '/' + month + '/' + year;
+        
+        return date;
+    }
 
-    const key = "FUfuvyGPy9tbvsWsNS9ReZwR5qJvzhn0";
+    const appendAllStops = () => {
 
-    const foodsaversAddress = {
-        id: "NULL",
-        name: "Foodsavers",
-        address_street: "Oude Baan",
-        address_number: "1H",
-        postal_code: "2800",
-        city: "Mechelen",
-        is_ready: "0"
-    };
-
-    let stops;
-    let stopsOrdered = [];
-
-    let locations = [];
-
-    fetch("https://www.bobstorms.be/foodflow/get-stops.php")
-        .then(response => response.json())
-        .then(json => {
-            stops = json.data;
-
-            stops.unshift(foodsaversAddress);
-            stops.push(foodsaversAddress);
-
-            stops.forEach(element => {
-                let address = element.address_street + " " + element.address_number + ", " + element.postal_code + " " + element.city;
-                locations.push(address);
-            });
-
-            let jsonLocations = {
-                "locations": locations
-            };
-            jsonLocations = JSON.stringify(jsonLocations);
-
-            let url = `https://www.mapquestapi.com/directions/v2/optimizedroute?key=${key}&json=${jsonLocations}`;
-
-            fetch(url)
-            .then(response => response.json())
-            .then(json => {
-                let locationSequence = json.route.locationSequence;
-    
-                for(let i = 0; i < locationSequence.length; i++) {
-                    let index = locationSequence[i];
-                    stopsOrdered.push(stops[index]);
-                }
-    
-                appendAllStops(stopsOrdered);
-            });
-
-        });
-
-    const appendAllStops = (stops) => {
+        let stops = JSON.parse(localStorage.getItem("stops"));
         
         loadingDiv.style.display = "none";
         const routeDiv = document.querySelector(".route");
@@ -142,6 +99,67 @@ window.addEventListener("load", () => {
 
         });
 
+    }
+
+    const main = document.querySelector("main");
+    const loadingDiv = document.querySelector(".route__loading");
+
+    const key = "FUfuvyGPy9tbvsWsNS9ReZwR5qJvzhn0";
+
+    const foodsaversAddress = {
+        id: "NULL",
+        name: "Foodsavers",
+        address_street: "Oude Baan",
+        address_number: "1H",
+        postal_code: "2800",
+        city: "Mechelen",
+        is_ready: "0"
+    };
+
+    let stopsOrdered = [];
+    let locations = [];
+
+    let lastDate = localStorage.getItem("stopsDate");
+
+    if(lastDate !== getDate()) {
+        fetch("https://www.bobstorms.be/foodflow/get-stops.php")
+            .then(response => response.json())
+            .then(json => {
+                let stops = json.data;
+
+                stops.unshift(foodsaversAddress);
+                stops.push(foodsaversAddress);
+
+                stops.forEach(element => {
+                    let address = element.address_street + " " + element.address_number + ", " + element.postal_code + " " + element.city;
+                    locations.push(address);
+                });
+
+                let jsonLocations = {
+                    "locations": locations
+                };
+                jsonLocations = JSON.stringify(jsonLocations);
+
+                let url = `https://www.mapquestapi.com/directions/v2/optimizedroute?key=${key}&json=${jsonLocations}`;
+
+                fetch(url)
+                .then(response => response.json())
+                .then(json => {
+                    let locationSequence = json.route.locationSequence;
+        
+                    for(let i = 0; i < locationSequence.length; i++) {
+                        let index = locationSequence[i];
+                        stopsOrdered.push(stops[index]);
+                    }
+                    
+                    localStorage.setItem("stopsDate", getDate());
+                    localStorage.setItem("stops", JSON.stringify(stopsOrdered));
+                    appendAllStops();
+                });
+
+            });
+    } else {
+        appendAllStops();
     }
 
 });
