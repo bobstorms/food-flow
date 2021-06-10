@@ -7,7 +7,7 @@
 #
 # Host: ID299174_foodflow.db.webhosting.be (MySQL 5.7.33-36-log)
 # Database: ID299174_foodflow
-# Generation Time: 2021-06-09 23:58:01 +0000
+# Generation Time: 2021-06-10 00:02:05 +0000
 # ************************************************************
 
 
@@ -43,8 +43,8 @@ LOCK TABLES `client` WRITE;
 
 INSERT INTO `client` (`id`, `name`, `address_street`, `address_number`, `city`, `postal_code`, `phone`, `email`, `is_ready`)
 VALUES
-	(1,'AMAI','Grote Markt','21','Mechelen','2800','','',1),
-	(2,'Asiel en Migratie','Sint Romboutskerkhof','1','Mechelen','2800','','',1),
+	(1,'AMAI','Grote Markt','21','Mechelen','2800','','',0),
+	(2,'Asiel en Migratie','Sint Romboutskerkhof','1','Mechelen','2800','','',0),
 	(3,'Sociaal Centrum','Twaalf Apostelenstraat','17','Mechelen','2800','','',0),
 	(4,'OCMW Bornem','Stationsstraat','22','Mechelen','2800','','',0),
 	(5,'OCMW Putte','Mechelbaan','547','Putte','2580','','',0),
@@ -205,7 +205,8 @@ LOCK TABLES `user` WRITE;
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`, `is_approved`, `is_admin`)
 VALUES
 	(1,'Bob','Storms','bob.storms@hotmail.be','$2y$12$5KKfM1WjoUrVTHts30SCV.LmEZjoFLNOB4tQFgzoMVVwfYXjWjpFC',1,0),
-	(2,'Testgebruiker','Foodflow','testgebruiker.foodflow@bobstorms.be','$2y$12$Vj1qsVSM3BY0Y/BDURo7VOsM/BcB1CZ/WyEnyeRCNbQJgVecDRfDq',1,0);
+	(2,'Testgebruiker','Foodflow','testgebruiker.foodflow@bobstorms.be','$2y$12$Vj1qsVSM3BY0Y/BDURo7VOsM/BcB1CZ/WyEnyeRCNbQJgVecDRfDq',1,0),
+	(3,'Demo','Jury','jury@bobstorms.be','$2y$12$i2FOgFcRgECn675TdYiE0eXBIdZPy2Li6O8MaGwH8sY.BmNdjGpWu',1,0);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
